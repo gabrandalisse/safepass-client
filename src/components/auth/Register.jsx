@@ -5,7 +5,7 @@ import AlertContext from "../../context/alert/alertContext";
 import Layout from "../layout/Layout";
 import { FormContainer, InputGroup, Alert } from "../ui/form";
 
-const Register = () => {
+const Register = (props) => {
   // Export the alert context
   const alertContext = useContext(AlertContext);
   const { alert, showAlert } = alertContext;
@@ -41,9 +41,11 @@ const Register = () => {
       return;
     }
 
-    // Create the user
+    // Create and save the user
 
     // Redirect
+    //! PARA PROBAR
+    props.history.push("/passwords");
   };
 
   return (
