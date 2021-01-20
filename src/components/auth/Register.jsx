@@ -3,7 +3,7 @@ import AlertContext from "../../context/alert/alertContext";
 
 // Components
 import Layout from "../layout/Layout";
-import { FormContainer, InputGroup, Alert } from "../ui/form";
+import { FormContainer, InputGroup, Form, Alert } from "../ui/form";
 
 const Register = (props) => {
   // Export the alert context
@@ -51,7 +51,7 @@ const Register = (props) => {
   return (
     <Layout>
       <FormContainer>
-        <form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <h3>Registrarse</h3>
           <p>
             Para mantener todas tus contraseñas seguras y en un solo lugar. Lo
@@ -95,7 +95,7 @@ const Register = (props) => {
             {alert ? <Alert>{alert}</Alert> : null}
             <input type="submit" value="Registrarse" />
           </InputGroup>
-        </form>
+        </Form>
       </FormContainer>
     </Layout>
   );

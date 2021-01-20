@@ -3,7 +3,7 @@ import AlertContext from "../../context/alert/alertContext";
 
 // Components
 import Layout from "../layout/Layout";
-import { FormContainer, InputGroup, Alert } from "../ui/form";
+import { FormContainer, InputGroup, Form, Alert } from "../ui/form";
 
 const Login = () => {
   // Export the alert context
@@ -45,7 +45,7 @@ const Login = () => {
   return (
     <Layout>
       <FormContainer>
-        <form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <h3>Iniciar Sesión</h3>
           <p>
             Para mantener ver y gestionar todas tus contraseñas!
@@ -77,7 +77,7 @@ const Login = () => {
             {alert ? <Alert>{alert}</Alert> : null}
             <input type="submit" value="Iniciar Sesión" />
           </InputGroup>
-        </form>
+        </Form>
       </FormContainer>
     </Layout>
   );
