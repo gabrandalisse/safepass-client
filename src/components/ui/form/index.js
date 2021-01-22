@@ -14,7 +14,6 @@ export const Form = styled.form`
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  border-radius: 10px;
   width: 60%;
 
   @media screen and (max-width: 769px) {
@@ -22,9 +21,13 @@ export const Form = styled.form`
     width: 80%;
   }
 
+  h3 {
+    text-transform: uppercase;
+  }
+
   h3,
   p {
-    padding-top: 10px;
+    padding: 10px 0;
     text-align: center;
   }
 `;
