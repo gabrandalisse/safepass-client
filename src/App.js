@@ -8,17 +8,20 @@ import Passwords from './components/passwords/Passwords';
 
 // States
 import AlertState from './context/alert/alertState';
+import AuthState from './context/authentication/authState';
 
 function App() {
   return (
     <AlertState>
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Register} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/passwords" component={Passwords} />
-        </Switch>
-      </Router>
+      <AuthState>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Register} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/passwords" component={Passwords} />
+          </Switch>
+        </Router>
+      </AuthState>
     </AlertState>
   );
 };

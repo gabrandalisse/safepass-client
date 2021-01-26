@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import AlertContext from "../../context/alert/alertContext";
+import AuthContext from '../../context/authentication/authContext';
 
 // Components
 import Layout from "../layout/Layout";
@@ -9,6 +10,10 @@ const Register = (props) => {
   // Export the alert context
   const alertContext = useContext(AlertContext);
   const { alert, showAlert } = alertContext;
+
+   // Export the auth context
+   const authContext = useContext(AuthContext);
+   const { newUser } = authContext;
 
   // Register from state
   const [user, updateUser] = useState({
@@ -42,6 +47,7 @@ const Register = (props) => {
     }
 
     // Create and save the user
+    newUser(user);
 
     // Redirect
     //! PARA PROBAR
