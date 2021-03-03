@@ -6,7 +6,8 @@ import {
     NEW_PASSWORD_SUCCESS,
     NEW_PASSWORD_ERROR,
     GET_ALL_SUCCESS,
-    GET_ALL_ERROR
+    GET_ALL_ERROR,
+    DELETE_SUCCES
 } from '../../types';
 
 const PasswordState = props => {
@@ -55,13 +56,29 @@ const PasswordState = props => {
         }
     };
 
+    //* Delete a password
+    const deletePassword = async id => {
+        try {
+            const response = await axiosClient.delete(`/api/passwords/${id}`);
+            dispatch({
+                type: DELETE_SUCCES,
+                payload: response.data.msg
+            });
+
+            getAll();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (  
         <passwordContext.Provider
             value={{
                 passwords: state.passwords,
                 message: state.message,
                 newPassword,
-                getAll
+                getAll,
+                deletePassword
             }}
         >
             {props.children}

@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import AuthContext from "../../context/authentication/authContext";
 
+// Material UI
+import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
+
 const HeaderContainer = styled.div`
   background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -31,6 +35,13 @@ const Logo = styled.p`
   }
 `;
 
+
+const useStyles = makeStyles((theme) => ({
+  button: {
+    paddingRight: "10px"
+  }
+}));
+
 const Nav = styled.nav`
   padding-right: 20px;
 
@@ -43,6 +54,8 @@ const Nav = styled.nav`
 `;
 
 const Header = () => {
+  const classes = useStyles();
+
   // Export the auth context
   const authContext = useContext(AuthContext);
   const { user, getUser, logOut } = authContext;
@@ -67,10 +80,11 @@ const Header = () => {
         {
           user ? (
             <>
-              <p>Hola {user.name}</p>
-              <button
+              <p>Hola <b>{user.name}</b>!</p>
+              <Button
+                className={classes.button}
                 onClick={handleClick}
-              >Cerrar Sesión</button>
+              >Cerrar Sesión</Button>
             </>
           ) : (
             <Nav>

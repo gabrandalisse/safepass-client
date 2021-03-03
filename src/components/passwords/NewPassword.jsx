@@ -1,11 +1,33 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import alertContext from "../../context/alert/alertContext";
-import passwordContext from '../../context/password/passwordContext';
+import passwordContext from "../../context/password/passwordContext";
 
-// Components
-import { InputGroup, Form, Alert } from "../ui/form";
+// Material UI
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Box from "@material-ui/core/Box";
+import { makeStyles } from "@material-ui/core/styles";
+import Alert from "@material-ui/lab/Alert";
+
+const useStyles = makeStyles((theme) => ({
+  form: {
+    width: "90%",
+  },
+  box: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: "10px",
+    paddingBottom: "10px"
+  },
+  textField: {
+    color: "white"
+  }
+}));
 
 const NewPassword = () => {
+  const classes = useStyles();
+
   // Extract alert from context
   const AlertContext = useContext(alertContext);
   const { alert, showAlert } = AlertContext;
@@ -42,39 +64,48 @@ const NewPassword = () => {
 
     // Send the info to the context
     newPassword(formData);
+    updateFormData({
+      name: "",
+      password: ""
+    });
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <h3>Agrega una nueva contraseña</h3>
-
-      <InputGroup>
-        <label htmlFor="name">Nombre de la Página:</label>
-        <input
-          type="text"
-          name="name"
-          placeholder="Ej: Facebook"
+    <Box className={classes.box}>
+      <form className={classes.form} noValidate onSubmit={handleSubmit}>
+        <TextField
+          className={classes.textField}
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
           id="name"
+          label="Nombre de la Página"
+          name="name"
+          autoComplete="name"
+          autoFocus
           onChange={handleChange}
+          value={name}
         />
-      </InputGroup>
-
-      <InputGroup>
-        <label htmlFor="password">Contraseña:</label>
-        <input
-          type="password"
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
           name="password"
-          placeholder="Tu contraseña"
+          label="Contraseña"
+          type="password"
           id="password"
+          autoComplete="current-password"
+          value={password}
           onChange={handleChange}
         />
-      </InputGroup>
-
-      <InputGroup>
-        {alert ? <Alert>{alert}</Alert> : null}
-        <input type="submit" value="Guardar" />
-      </InputGroup>
-    </Form>
+        <Button type="submit" fullWidth variant="outlined" color="primary" >
+          Guardar Contraseña
+        </Button>
+        {alert ? <Alert severity="error">{alert}</Alert> : null}
+      </form>
+    </Box>
   );
 };
 

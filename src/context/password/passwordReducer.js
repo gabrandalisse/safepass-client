@@ -3,7 +3,8 @@ import {
     NEW_PASSWORD_SUCCESS,
     NEW_PASSWORD_ERROR,
     GET_ALL_SUCCESS,
-    GET_ALL_ERROR
+    GET_ALL_ERROR,
+    DELETE_SUCCES
 } from '../../types';
 
 export default (state, action) => {
@@ -20,6 +21,7 @@ export default (state, action) => {
                 passwords: action.payload.data.passwords
             }
 
+        case DELETE_SUCCES:
         case GET_ALL_ERROR:
         case NEW_PASSWORD_ERROR:
             return {
