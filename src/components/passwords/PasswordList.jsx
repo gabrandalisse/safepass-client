@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "@emotion/styled";
+import passwordContext from '../../context/password/passwordContext';
 
 // Imported components
 import PasswordView from "./PasswordView";
@@ -29,15 +30,38 @@ const PasswordListContainer = styled.ul`
   }
 `;
 
-//TODO Set the key of the map with the id of the password saved on the bd given by mongo
+const PasswordList = () => {
 
-const PasswordList = ({ passwords }) => {
+  // Extract password functions from context
+  const PasswordContext = useContext(passwordContext);
+  const { passwords } = PasswordContext;
+
   return (
     <PasswordListContainer>
-      <h2> - Todas tus contraseñas guardadas -</h2>
-      {passwords.map((pass) => (
-        <PasswordView pass={pass} />
-      ))}
+
+      {
+        passwords.length !== 0 ? (
+            <> 
+              <h2> - Todas tus contraseñas guardadas -</h2>
+              {
+                passwords.map(pass => (
+                  <PasswordView 
+                    key={pass._id}
+                    pass={pass}
+                  />
+                ))
+              }
+              
+            </>
+        ) : (
+          <h2>No tienes contraseñas almacenadas</h2>
+        )
+      }
+
+
+     
+
+
     </PasswordListContainer>
   );
 };

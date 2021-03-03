@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "@emotion/styled";
+import passwordContext from '../../context/password/passwordContext';
 
 // Components
 import Layout from "../layout/Layout";
@@ -25,15 +26,20 @@ const MainContainer = styled.div`
 
 const Passwords = () => {
 
-  const example = [{name: "Facebook", password: "1234"}, {name: "Instagram", password: "456"}, {name: "Twitter", password: "queondamonoestamo activo"}];
+  // Extract password functions from context
+  const PasswordContext = useContext(passwordContext);
+  const { getAll } = PasswordContext;
 
+  useEffect(() => {
+    getAll();
+  }, []);
 
   return (
     <Layout>
       <MainContainer>
         <NewPassword />
         <PasswordList 
-          passwords={example}
+          
         />
       </MainContainer>
     </Layout>

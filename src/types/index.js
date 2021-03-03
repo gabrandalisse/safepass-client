@@ -9,3 +9,9 @@ export const GET_USER = 'GET_USER';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const LOG_OUT = 'LOG_OUT';
+
+// Passwords types
+export const NEW_PASSWORD_SUCCESS = 'NEW_PASSWORD_SUCCESS';
+export const NEW_PASSWORD_ERROR = 'NEW_PASSWORD_ERROR';
+export const GET_ALL_SUCCESS = 'GET_ALL_SUCCESS';
+export const GET_ALL_ERROR = 'GET_ALL_ERROR';

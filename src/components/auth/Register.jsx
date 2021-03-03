@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import AlertContext from "../../context/alert/alertContext";
-import AuthContext from '../../context/authentication/authContext';
+import AuthContext from "../../context/authentication/authContext";
 
 // Components
 import Layout from "../layout/Layout";
@@ -11,9 +11,20 @@ const Register = (props) => {
   const alertContext = useContext(AlertContext);
   const { alert, showAlert } = alertContext;
 
-   // Export the auth context
-   const authContext = useContext(AuthContext);
-   const { newUser } = authContext;
+  // Export the auth context
+  const authContext = useContext(AuthContext);
+  const { authenticated, message, newUser } = authContext;
+
+  // If the user is already authenticated or registered
+  useEffect(() => {
+    if( authenticated ) {
+      props.history.push('/passwords');
+    }
+
+    if( message ) {
+      showAlert(message);
+    }
+  },[message, authenticated, props.history]);
 
   // Register from state
   const [user, updateUser] = useState({
@@ -38,20 +49,16 @@ const Register = (props) => {
     e.preventDefault();
 
     // Verify data
-    if( name.trim() === "" || email.trim() === "" || password.trim() === "" ) {
+    if (name.trim() === "" || email.trim() === "" || password.trim() === "") {
       showAlert("Todos los campos son obligatorios.");
       return;
-    } else if ( password.length < 6 ) {
+    } else if (password.length < 6) {
       showAlert("La contraseña debe tener al menos 6 caracteres.");
       return;
     }
 
     // Create and save the user
     newUser(user);
-
-    // Redirect
-    //! PARA PROBAR
-    props.history.push("/passwords");
   };
 
   return (

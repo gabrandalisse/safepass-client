@@ -1,20 +1,35 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import AlertContext from "../../context/alert/alertContext";
+import AuthContext from "../../context/authentication/authContext";
 
 // Components
 import Layout from "../layout/Layout";
 import { FormContainer, InputGroup, Form, Alert } from "../ui/form";
 
-const Login = () => {
+const Login = props => {
   // Export the alert context
   const alertContext = useContext(AlertContext);
   const { alert, showAlert } = alertContext;
 
-  // Register from state
+  // Export the auth context
+  const authContext = useContext(AuthContext);
+  const { authenticated, message, logIn } = authContext;
+
+  // Register form state
   const [user, updateUser] = useState({
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    if( authenticated ) {
+      props.history.push('/passwords');
+    } 
+
+    if( message ) {
+      showAlert(message);
+    }
+  }, [authenticated, message, props.history]);
 
   // Put the form data in the state
   const handleChange = (e) => {
@@ -32,14 +47,13 @@ const Login = () => {
     e.preventDefault();
 
     // Verify data
-    if ( email.trim() === "" || password.trim() === "") {
+    if (email.trim() === "" || password.trim() === "") {
       showAlert("Todos los campos son obligatorios.");
       return;
-    } 
+    }
 
-    // Validate the user
-
-    // Redirect
+    // Validate the user and login
+    logIn(user);
   };
 
   return (
@@ -47,9 +61,7 @@ const Login = () => {
       <FormContainer>
         <Form onSubmit={handleSubmit}>
           <h3>Iniciar Sesión</h3>
-          <p>
-            Para mantener ver y gestionar todas tus contraseñas!
-          </p>
+          <p>Para mantener ver y gestionar todas tus contraseñas!</p>
 
           <InputGroup>
             <label htmlFor="email">Email:</label>

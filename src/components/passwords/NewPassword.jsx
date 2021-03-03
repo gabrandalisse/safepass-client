@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import alertContext from "../../context/alert/alertContext";
+import passwordContext from '../../context/password/passwordContext';
 
 // Components
 import { InputGroup, Form, Alert } from "../ui/form";
@@ -8,6 +9,10 @@ const NewPassword = () => {
   // Extract alert from context
   const AlertContext = useContext(alertContext);
   const { alert, showAlert } = AlertContext;
+
+  // Extract password functions from context
+  const PasswordContext = useContext(passwordContext);
+  const { newPassword } = PasswordContext;
 
   // State of the new password
   const [formData, updateFormData] = useState({
@@ -34,6 +39,9 @@ const NewPassword = () => {
       showAlert("Todos los campos son obligatorios");
       return;
     }
+
+    // Send the info to the context
+    newPassword(formData);
   };
 
   return (
