@@ -22,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
   },
   textField: {
     color: "white"
+  },
+  alert: {
+    marginTop: "10px"
   }
 }));
 
@@ -34,13 +37,19 @@ const NewPassword = () => {
 
   // Extract password functions from context
   const PasswordContext = useContext(passwordContext);
-  const { newPassword } = PasswordContext;
+  const { message, newPassword } = PasswordContext;
 
   // State of the new password
   const [formData, updateFormData] = useState({
     name: "",
     password: "",
   });
+
+  useEffect(() => {
+    if( message ) {
+      showAlert(message);
+    }
+  }, [message]);
 
   // Saving the data form on the state
   const handleChange = (e) => {
@@ -103,7 +112,7 @@ const NewPassword = () => {
         <Button type="submit" fullWidth variant="outlined" color="primary" >
           Guardar Contraseña
         </Button>
-        {alert ? <Alert severity="error">{alert}</Alert> : null}
+        {alert ? <Alert severity="info" className={classes.alert}>{alert}</Alert> : null}
       </form>
     </Box>
   );

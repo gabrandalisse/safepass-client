@@ -7,7 +7,8 @@ import {
     NEW_PASSWORD_ERROR,
     GET_ALL_SUCCESS,
     GET_ALL_ERROR,
-    DELETE_SUCCES
+    DELETE_SUCCES,
+    CLEAR_MESSAGE
 } from '../../types';
 
 const PasswordState = props => {
@@ -21,12 +22,18 @@ const PasswordState = props => {
     //* Add a new password
     const newPassword = async info => {
         try {
-            const response = await axiosClient.post('/api/passwords/', info);
-            
+            await axiosClient.post('/api/passwords/', info);
+
             dispatch({
                 type: NEW_PASSWORD_SUCCESS,
-                payload: response
+                payload: 'Contraseña guardada con éxito'
             });
+
+            setTimeout(() => {
+                dispatch({
+                    type: CLEAR_MESSAGE
+                })
+            }, 3000);
 
             getAll();
         } catch (error) {
@@ -65,11 +72,17 @@ const PasswordState = props => {
                 payload: response.data.msg
             });
 
+            setTimeout(() => {
+                dispatch({
+                    type: CLEAR_MESSAGE
+                })
+            }, 3000);
+
             getAll();
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     return (  
         <passwordContext.Provider
@@ -84,6 +97,6 @@ const PasswordState = props => {
             {props.children}
         </passwordContext.Provider>
     );
-}
+};
  
 export default PasswordState;

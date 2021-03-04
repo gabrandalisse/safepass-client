@@ -35,7 +35,6 @@ const Logo = styled.p`
   }
 `;
 
-
 const useStyles = makeStyles((theme) => ({
   button: {
     paddingRight: "10px"
@@ -58,15 +57,11 @@ const Header = () => {
 
   // Export the auth context
   const authContext = useContext(AuthContext);
-  const { user, getUser, logOut } = authContext;
+  const { user, logOut } = authContext;
 
   const handleClick = () => {
     logOut();
   };
-
-  // useEffect(() => {
-  //   getUser();
-  // }, []);
 
   return (
     <header>
@@ -93,8 +88,6 @@ const Header = () => {
             </Nav>
           )
         }
-      
-        
       </HeaderContainer>
     </header>
   );
