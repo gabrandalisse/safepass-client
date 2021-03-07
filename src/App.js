@@ -17,7 +17,7 @@ import PasswordState from "./context/password/passwordState";
 const token = localStorage.getItem("token");
 if (token) {
   tokenAuth(token);
-}
+};
 
 function App() {
   return (
