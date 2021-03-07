@@ -169,7 +169,7 @@ const Register = (props) => {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="/login" variant="body2">
+                <Link to="/login" variant="body2">
                   {"¿Ya tienes una cuenta? Inicia Sesión!"}
                 </Link>
               </Grid>
