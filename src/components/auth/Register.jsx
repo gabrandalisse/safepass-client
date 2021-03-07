@@ -1,13 +1,14 @@
 import React, { useState, useContext, useEffect } from "react";
 import AlertContext from "../../context/alert/alertContext";
 import AuthContext from "../../context/authentication/authContext";
+import { Link } from "react-router-dom";
 
 // Material UI
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import Link from "@material-ui/core/Link";
+// import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -169,9 +170,7 @@ const Register = (props) => {
             </Button>
             <Grid container>
               <Grid item>
-                <Link to="/login" variant="body2">
-                  {"¿Ya tienes una cuenta? Inicia Sesión!"}
-                </Link>
+                <Link to="/login">¿Ya tienes una cuenta? Inicia Sesión!</Link>
               </Grid>
             </Grid>
           </form>
