@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import AuthContext from "../../context/authentication/authContext";
@@ -6,6 +6,13 @@ import AuthContext from "../../context/authentication/authContext";
 // Material UI
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  button: {
+    paddingRight: "10px",
+    marginTop: "5px",
+  },
+}));
 
 const HeaderContainer = styled.div`
   background: rgba(255, 255, 255, 0.25);
@@ -21,6 +28,7 @@ const HeaderContainer = styled.div`
   @media screen and (max-width: 769px) {
     flex-direction: column;
     padding: 10px 0;
+    height: 6rem;
   }
 `;
 
@@ -34,12 +42,6 @@ const Logo = styled.p`
     color: #34e89e;
   }
 `;
-
-const useStyles = makeStyles((theme) => ({
-  button: {
-    paddingRight: "10px"
-  }
-}));
 
 const Nav = styled.nav`
   padding-right: 20px;
@@ -72,22 +74,21 @@ const Header = () => {
           </Logo>
         </div>
 
-        {
-          user ? (
-            <>
-              <p>Hola <b>{user.name}</b>!</p>
-              <Button
-                className={classes.button}
-                onClick={handleClick}
-              >Cerrar Sesión</Button>
-            </>
-          ) : (
-            <Nav>
-              <Link to="/">Registrarse</Link>
-              <Link to="/login">Iniciar Sesión</Link>
-            </Nav>
-          )
-        }
+        {user ? (
+          <>
+            <p>
+              Hola <b>{user.name}</b>!
+            </p>
+            <Button className={classes.button} onClick={handleClick}>
+              Cerrar Sesión
+            </Button>
+          </>
+        ) : (
+          <Nav>
+            <Link to="/">Registrarse</Link>
+            <Link to="/login">Iniciar Sesión</Link>
+          </Nav>
+        )}
       </HeaderContainer>
     </header>
   );

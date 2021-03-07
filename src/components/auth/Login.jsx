@@ -87,6 +87,7 @@ const Login = (props) => {
     if (message) {
       showAlert(message);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authenticated, message, props.history]);
 
   // Put the form data in the state

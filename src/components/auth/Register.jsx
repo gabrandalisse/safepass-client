@@ -71,6 +71,7 @@ const Register = (props) => {
     if (message) {
       showAlert(message);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [message, authenticated, props.history]);
 
   // Register from state

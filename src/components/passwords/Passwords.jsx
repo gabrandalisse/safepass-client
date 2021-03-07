@@ -14,6 +14,7 @@ const Passwords = () => {
   // Get all password when the component load for the first time
   useEffect(() => {
     getAll();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

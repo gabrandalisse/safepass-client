@@ -4,11 +4,12 @@ import AuthContext from '../../context/authentication/authContext';
 
 const PrivateRoute = ({ component: Component, ...props }) => {
     const authContext = useContext(AuthContext);
-    const { authenticated, loading, getUser } = authContext;
+    const { authenticated, getUser } = authContext;
 
     useEffect(() => {
         getUser();
-    }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (  
         <Route { ...props } render={ props => !authenticated  ? (
@@ -20,7 +21,4 @@ const PrivateRoute = ({ component: Component, ...props }) => {
     );
 }
 
-//TODO Ver que cuando cierro sesion no se redirige a login o pagina de inicio
-//TODO creo que el error era el loading, ver eso bien o sacarlo de ultima! gg
- 
 export default PrivateRoute;

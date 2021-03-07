@@ -49,6 +49,7 @@ const NewPassword = () => {
     if( message ) {
       showAlert(message);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [message]);
 
   // Saving the data form on the state

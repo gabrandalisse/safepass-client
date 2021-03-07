@@ -15,8 +15,6 @@ const Layout = ({ children }) => {
 
             body {
               background: #FFF;
-              /* background: -webkit-linear-gradient(to right, #0f3443, #34e89e);
-              background: linear-gradient(to right, #0f3443, #34e89e); */
             }
 
             h1,
